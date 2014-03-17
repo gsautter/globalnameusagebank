@@ -1,0 +1,13 @@
+// other settings (fill in the angle-bracketed parts with your actual data, also removing the angle brackets)
+accessUrl = "http://<serverName>:<portOfTomcat>/<TnuBank webapp name>/txn";
+adminPasscode = "<yourNodePasscode>";
+
+// EXAMPLE for other settings
+//accessUrl = "http://plazi2.cs.umb.edu:8080/TnuBank/txn";
+//adminPasscode = "<noneOfYourBusiness>";
+
+// HTML template file required for admin page
+basePage = "onnNodeAdminPage.html";
+
+// Stylesheet file required for admin page
+cssNames = "onnNodeAdminPage.css";

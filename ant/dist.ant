@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+	Does all the packing. That is, creates the files that live in dist/
+-->
+
+<project name="dist">
+	<target name="zip" depends="txn-jar,tnu-jar">
+		<delete file="${zip.file}" />
+		<zip destfile="${zip.file}">
+			<fileset dir="${build.home}">
+				<!-- Don't put the classes into this twice -->
+				<exclude name="classes/**" />
+			</fileset>
+			<fileset dir="${web.home}" />
+		</zip>
+	</target>
+	
+	<target name="txn-jar">
+		<delete file="${jar.txn.file}" />
+		<jar destfile="${jar.txn.file}">
+			<fileset dir="${build.home}/classes">
+				<include name="**/txnBank/**" />
+			</fileset>
+			<fileset dir="${src.home}">
+				<include name="**/txnBank/**" />
+			</fileset>
+		</jar>
+	</target>
+	
+	<target name="tnu-jar">
+		<delete file="${jar.tnu.file}" />
+		<jar destfile="${jar.tnu.file}">
+			<fileset dir="${build.home}/classes">
+				<include name="**/tnuBank/**" />
+			</fileset>
+			<fileset dir="${src.home}">
+				<include name="**/tnuBank/**" />
+			</fileset>
+		</jar>
+	</target>
+</project>

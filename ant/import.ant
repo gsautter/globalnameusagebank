@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+	Fetches OpenStringPool and RefParse from projects existing in same workspace
+-->
+
+<project name="import">
+	<target name="fetch" depends="fetch-osp,fetch-su,fetch-hxu,fetch-gamta,fetch-eio,fetch-tnu,fetch-bru,fetch-icmlib,fetch-rbk,fetch-bbk" />
+	
+	<target name="check-fetch-osp" unless="osp.exists">
+		<available property="osp.exists" file="../openstringpool/dist/OpenStringPool.jar"/>
+	</target>
+	<target name="fetch-osp" depends="check-fetch-osp" if="${osp.exists}">
+    	<copy file="../openstringpool/dist/OpenStringPool.jar" todir="${lib.home}" overwrite="true" verbose="false" />
+	</target>
+	
+	<target name="check-fetch-bolo" unless="bolo.exists">
+		<available property="bolo.exists" file="../bolo/dist/Bolo.jar"/>
+	</target>
+	<target name="fetch-bolo" depends="check-fetch-bolo" if="${bolo.exists}">
+    	<copy file="../bolo/dist/Bolo.jar" todir="${lib.home}" overwrite="true" verbose="false" />
+	</target>
+	
+	
+	<target name="check-fetch-su" unless="su.exists">
+		<available property="su.exists" file="../idaho-core/dist/StringUtils.jar"/>
+	</target>
+	<target name="fetch-su" depends="check-fetch-su" if="${su.exists}">
+    	<copy file="../idaho-core/dist/StringUtils.jar" todir="${lib.home}" overwrite="true" verbose="false" />
+	</target>
+	
+	<target name="check-fetch-hxu" unless="hxu.exists">
+		<available property="hxu.exists" file="../idaho-core/dist/HtmlXmlUtil.jar"/>
+	</target>
+	<target name="fetch-hxu" depends="check-fetch-hxu" if="${hxu.exists}">
+    	<copy file="../idaho-core/dist/HtmlXmlUtil.jar" todir="${lib.home}" overwrite="true" verbose="false" />
+	</target>
+	
+	<target name="check-fetch-gamta" unless="gamta.exists">
+		<available property="gamta.exists" file="../idaho-core/dist/Gamta.jar"/>
+	</target>
+	<target name="fetch-gamta" depends="check-fetch-gamta" if="${gamta.exists}">
+    	<copy file="../idaho-core/dist/Gamta.jar" todir="${lib.home}" overwrite="true" verbose="false" />
+	</target>
+	
+	<target name="check-fetch-eio" unless="eio.exists">
+		<available property="eio.exists" file="../idaho-core/dist/EasyIO.jar"/>
+	</target>
+	<target name="fetch-eio" depends="check-fetch-eio" if="${eio.exists}">
+    	<copy file="../idaho-core/dist/EasyIO.jar" todir="${lib.home}" overwrite="true" verbose="false" />
+	</target>
+	
+	
+	<target name="check-fetch-tnu" unless="tnu.exists">
+		<available property="tnu.exists" file="../idaho-extensions/dist/TaxonomicNameUtils.jar"/>
+	</target>
+	<target name="fetch-tnu" depends="check-fetch-tnu" if="${tnu.exists}">
+    	<copy file="../idaho-extensions/dist/TaxonomicNameUtils.jar" todir="${lib.home}" overwrite="true" verbose="false" />
+	</target>
+	
+	<target name="check-fetch-bru" unless="bru.exists">
+		<available property="bru.exists" file="../idaho-extensions/dist/BibRefUtils.jar"/>
+	</target>
+	<target name="fetch-bru" depends="check-fetch-bru" if="${bru.exists}">
+    	<copy file="../idaho-extensions/dist/BibRefUtils.jar" todir="${lib.home}" overwrite="true" verbose="false" />
+	</target>
+	
+	<target name="check-fetch-icmlib" unless="icmlib.exists">
+		<available property="icmlib.exists" file="../idaho-core/lib/mail.jar"/>
+	</target>
+	<target name="fetch-icmlib" depends="check-fetch-icmlib" if="${icmlib.exists}">
+    	<copy file="../idaho-core/lib/mail.jar" todir="${lib.home}" overwrite="true" verbose="false" />
+	</target>
+	
+	<target name="check-fetch-rbk" unless="rbk.exists">
+		<available property="rbk.exists" file="../refbank/build/WEB-INF/lib/RefBank.jar"/>
+	</target>
+	<target name="fetch-rbk" depends="check-fetch-rbk" if="${rbk.exists}">
+    	<copy file="../refbank/build/WEB-INF/lib/RefBank.jar" todir="${lib.home}" overwrite="true" verbose="false" />
+	</target>
+	
+	<target name="check-fetch-bbk" unless="bbk.exists">
+		<available property="bbk.exists" file="../bionomialbank/build/WEB-INF/lib/BinoBank.jar"/>
+	</target>
+	<target name="fetch-bbk" depends="check-fetch-bbk" if="${bbk.exists}">
+    	<copy file="../bionomialbank/build/WEB-INF/lib/BinoBank.jar" todir="${lib.home}" overwrite="true" verbose="false" />
+	</target>
+</project>
