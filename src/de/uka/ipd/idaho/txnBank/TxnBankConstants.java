@@ -140,7 +140,7 @@ public interface TxnBankConstants extends StringPoolConstants, TaxonomicNameCons
 			//	obtain and check rank
 			Rank taxNameRank = rankSystem.getRank(taxName.getRank());
 			if (taxNameRank == null) {
-				System.out.println("TaxonomicNameChecker: Could not determine taxon name rank");
+//				System.out.println("TaxonomicNameChecker: Could not determine taxon name rank");
 				return null;
 			}
 			
@@ -163,11 +163,11 @@ public interface TxnBankConstants extends StringPoolConstants, TaxonomicNameCons
 			
 			//	check primary parent ranks
 			if ((primaryGrandParentRank != null) && (taxName.getEpithet(primaryGrandParentRank.name) == null)) {
-				System.out.println("TaxonomicNameChecker: " + primaryGrandParentRank.name + " (PGP) epithet lacking");
+//				System.out.println("TaxonomicNameChecker: " + primaryGrandParentRank.name + " (PGP) epithet lacking");
 				return null;
 			}
 			if ((primaryParentRank != null) && (taxName.getEpithet(primaryParentRank.name) == null)) {
-				System.out.println("TaxonomicNameChecker: " + primaryGrandParentRank.name + " (PP) epithet lacking");
+//				System.out.println("TaxonomicNameChecker: " + primaryGrandParentRank.name + " (PP) epithet lacking");
 				return null;
 			}
 			
@@ -190,9 +190,9 @@ public interface TxnBankConstants extends StringPoolConstants, TaxonomicNameCons
 			//	eliminate authority (we're not storing that)
 			taxName.setAuthority(null, -1);
 			
-			System.out.println("TaxonomicNameChecker: Upload String created:");
-			System.out.println("- " + taxNameString.toString());
-			System.out.println("- " + taxName.toDwcXml());
+//			System.out.println("TaxonomicNameChecker: Upload String created:");
+//			System.out.println("- " + taxNameString.toString());
+//			System.out.println("- " + taxName.toDwcXml());
 			
 			//	synthesize new pair of plain and parsed string
 			return new UploadString(taxNameString.toString(), taxName.toDwcXml());

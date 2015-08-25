@@ -793,11 +793,6 @@ public class TnuBankServlet extends StringPoolServlet implements TnuBankClient, 
 						public void close() throws IOException {}
 					});
 				} catch (IOException ioe) {}
-//				try {
-//					PooledString taxonNamePs = txn.getString(tnu.taxonNameId);
-//					if ((taxonNamePs != null) && (taxonNamePs.getStringParsed() != null))
-//						parsedString.append(taxonNamePs.getStringParsed());
-//				} catch (IOException ioe) {}
 				parsedString.append("<dwc:taxonID>" + AnnotationUtils.escapeForXml(tnu.taxonNameId) + "</dwc:taxonID>");
 			}
 			
@@ -815,11 +810,6 @@ public class TnuBankServlet extends StringPoolServlet implements TnuBankClient, 
 					public void close() throws IOException {}
 				});
 			} catch (IOException ioe) {}
-//			try {
-//				PooledString bibRefPs = rbk.getString(tnu.bibRefId);
-//				if ((bibRefPs != null) && (bibRefPs.getStringParsed() != null))
-//					parsedString.append(bibRefPs.getStringParsed());
-//			} catch (IOException ioe) {}
 			parsedString.append("<bibRefId>" + AnnotationUtils.escapeForXml(tnu.bibRefId) + "</bibRefId>");
 			
 			parsedString.append("<pageNumber>" + tnu.pageNumber + "</pageNumber>");

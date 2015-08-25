@@ -60,9 +60,9 @@ public interface TnuBankConstants extends StringPoolConstants, TaxonomicNameCons
 	
 	public static final String NAME_STRING_NAME_USAGE_TYPE = "name string";
 	public static final String ORIGINAL_DESCRIPTION_NAME_USAGE_TYPE = "original description";
-	public static final String REDESCRIPTION_USAGE_TYPE = "redescription";
+	public static final String REDESCRIPTION_NAME_USAGE_TYPE = "redescription";
 	public static final String DATA_DESCRIPTION_NAME_USAGE_TYPE = "data description";
-	public static final String COMPILED_DESCRIPTION_NAME_USAGE_TYPE = "compiled description";
+//	public static final String COMPILED_DESCRIPTION_NAME_USAGE_TYPE = "compiled description";
 	public static final String CITATION_NAME_USAGE_TYPE = "citation";
 	public static final String KEY_ROOT_NAME_USAGE_TYPE = "key root";
 //	public static final String KEY_LEAF_NAME_USAGE_TYPE = "key leaf";
@@ -84,9 +84,9 @@ public interface TnuBankConstants extends StringPoolConstants, TaxonomicNameCons
 		{
 			this.put("NS", NAME_STRING_NAME_USAGE_TYPE);
 			this.put("OD", ORIGINAL_DESCRIPTION_NAME_USAGE_TYPE);
-			this.put("RD", REDESCRIPTION_USAGE_TYPE);
+			this.put("RD", REDESCRIPTION_NAME_USAGE_TYPE);
 			this.put("DD", DATA_DESCRIPTION_NAME_USAGE_TYPE);
-			this.put("CD", COMPILED_DESCRIPTION_NAME_USAGE_TYPE);
+//			this.put("CD", COMPILED_DESCRIPTION_NAME_USAGE_TYPE);
 			this.put("CI", CITATION_NAME_USAGE_TYPE);
 			this.put("KR", KEY_ROOT_NAME_USAGE_TYPE);
 //			this.put("KL", KEY_LEAF_NAME_USAGE_TYPE);
@@ -95,9 +95,9 @@ public interface TnuBankConstants extends StringPoolConstants, TaxonomicNameCons
 			this.put("NC", NEW_COMBINATION_USAGE_TYPE);
 			this.put(NAME_STRING_NAME_USAGE_TYPE, NAME_STRING_NAME_USAGE_TYPE);
 			this.put(ORIGINAL_DESCRIPTION_NAME_USAGE_TYPE, ORIGINAL_DESCRIPTION_NAME_USAGE_TYPE);
-			this.put(REDESCRIPTION_USAGE_TYPE, REDESCRIPTION_USAGE_TYPE);
+			this.put(REDESCRIPTION_NAME_USAGE_TYPE, REDESCRIPTION_NAME_USAGE_TYPE);
 			this.put(DATA_DESCRIPTION_NAME_USAGE_TYPE, DATA_DESCRIPTION_NAME_USAGE_TYPE);
-			this.put(COMPILED_DESCRIPTION_NAME_USAGE_TYPE, COMPILED_DESCRIPTION_NAME_USAGE_TYPE);
+//			this.put(COMPILED_DESCRIPTION_NAME_USAGE_TYPE, COMPILED_DESCRIPTION_NAME_USAGE_TYPE);
 			this.put(CITATION_NAME_USAGE_TYPE, CITATION_NAME_USAGE_TYPE);
 			this.put(KEY_ROOT_NAME_USAGE_TYPE, KEY_ROOT_NAME_USAGE_TYPE);
 //			this.put(KEY_LEAF_NAME_USAGE_TYPE, KEY_LEAF_NAME_USAGE_TYPE);
@@ -122,7 +122,7 @@ public interface TnuBankConstants extends StringPoolConstants, TaxonomicNameCons
 			this.put("OD", "OD");
 			this.put("RD", "RD");
 			this.put("DD", "DD");
-			this.put("CD", "CD");
+//			this.put("CD", "CD");
 			this.put("CI", "CI");
 			this.put("KR", "KR");
 //			this.put("KL", "KL");
@@ -131,9 +131,9 @@ public interface TnuBankConstants extends StringPoolConstants, TaxonomicNameCons
 			this.put("NC", "NC");
 			this.put(NAME_STRING_NAME_USAGE_TYPE, "NS");
 			this.put(ORIGINAL_DESCRIPTION_NAME_USAGE_TYPE, "OD");
-			this.put(REDESCRIPTION_USAGE_TYPE, "RD");
+			this.put(REDESCRIPTION_NAME_USAGE_TYPE, "RD");
 			this.put(DATA_DESCRIPTION_NAME_USAGE_TYPE, "DD");
-			this.put(COMPILED_DESCRIPTION_NAME_USAGE_TYPE, "CD");
+//			this.put(COMPILED_DESCRIPTION_NAME_USAGE_TYPE, "CD");
 			this.put(CITATION_NAME_USAGE_TYPE, "CI");
 			this.put(KEY_ROOT_NAME_USAGE_TYPE, "KR");
 //			this.put(KEY_LEAF_NAME_USAGE_TYPE, "KL");
@@ -182,6 +182,10 @@ public interface TnuBankConstants extends StringPoolConstants, TaxonomicNameCons
 				throw new IllegalArgumentException("'" + pageNumber + "' is not a valid page number");
 		}
 		
+		/**
+		 * Convert the TNU into its string representation.
+		 * @return the string representation
+		 */
 		public String toPlainString() {
 			StringBuffer plainString = new StringBuffer();
 			plainString.append(this.nameStringId);
@@ -195,6 +199,10 @@ public interface TnuBankConstants extends StringPoolConstants, TaxonomicNameCons
 			return plainString.toString();
 		}
 		
+		/**
+		 * Convert the TNU into its XML representation.
+		 * @return the XML representation as a string
+		 */
 		public String toParsedString() {
 			StringBuffer parsedString = new StringBuffer("<taxonNameUsage xmlns:dwc=\"http://digir.net/schema/conceptual/darwin/2003/1.0\">");
 			parsedString.append("<dwc:scientificNameID>" + AnnotationUtils.escapeForXml(this.nameStringId) + "</dwc:scientificNameID>");
@@ -209,6 +217,11 @@ public interface TnuBankConstants extends StringPoolConstants, TaxonomicNameCons
 			return parsedString.toString();
 		}
 		
+		/**
+		 * Parse a TNU from its string representation.
+		 * @param tnuString the TNU to parse
+		 * @return the TNU parsed from the argument string
+		 */
 		public static TaxonNameUsage parseTaxonNameUsage(String tnuString) {
 			String nameStringId = tnuString;
 			if (nameStringId.indexOf('(') == -1)
@@ -242,6 +255,11 @@ public interface TnuBankConstants extends StringPoolConstants, TaxonomicNameCons
 			return new TaxonNameUsage(nameStringId, taxonNameId, nameUsageType, nameUsageSubType, bibRefId, Integer.parseInt(pageNumber));
 		}
 		
+		/**
+		 * Parse a TNU from its XML representation.
+		 * @param tnu the TNU to parse
+		 * @return the TNU parsed from the argument XML
+		 */
 		public static TaxonNameUsage parseTaxonNameUsage(MutableAnnotation tnu) {
 			Annotation[] nameStringIds = tnu.getAnnotations("dwc:scientificNameID");
 			if (nameStringIds.length == 0)
@@ -260,6 +278,11 @@ public interface TnuBankConstants extends StringPoolConstants, TaxonomicNameCons
 			return new TaxonNameUsage(nameStringIds[0].getValue(), ((taxonNameIds.length == 0) ? null : taxonNameIds[0].getValue()), nameUsageTypes[0].getValue(), ((nameUsageSubTypes.length == 0) ? null : nameUsageSubTypes[0].getValue()), bibRefIds[0].getValue(), Integer.parseInt(pageNumbers[0].getValue()));
 		}
 		
+		/**
+		 * Test if a TNU string is valid, i.e., has the required form.
+		 * @param tnuString the string to test
+		 * @return true if the argument string is valid, false otherwise
+		 */
 		public static boolean isValid(String tnuString) {
 			return (tnuString.matches(
 						"[0-9a-fA-F]{32}" +
@@ -294,26 +317,5 @@ public interface TnuBankConstants extends StringPoolConstants, TaxonomicNameCons
 	 * - SJ: part of synonymization as junior synonym
 	 * 
 	 * - NC: new combination (used for original combination, with new combination being an OD)
-	 */
-	
-	/* String style options:
-	 * - <nameStringId>(<taxonNameId>).<usageType>@<bibRefId>:<pageNumber>
-	 *   + concise, no redundancy
-	 *   - hard (virtually impossible) to debug for lack of human readable parts
-	 *   - requires joins for even most basic search
-	 * - <nameString> {<nameStringId>} (<taxonName> {<taxonNameId>}), <usageType> @ <author> (<year>) <title> {<bibRefId>}:<pageNumber>
-	 *   - redundant data
-	 *   + basic search works without additional XyzBanks
-	 *   + able to resolve most treatment citations right away
-	 *   - IDs intermixed with plain text
-	 * - <nameString> {<nameStringId>} (<taxonName> {<taxonNameId>}), <usageType> @ <bibRefString> {<bibRefId>}:<pageNumber>
-	 *   - lots of redundant data
-	 *   + any search works without additional XyzBanks
-	 *   + able to resolve treatment citations right away
-	 *   - many possible representations of same usage due to different representations of same reference
-	 * - <nameStringId>(<taxonNameId>).<usageType>@<bibRefId>:<pageNumber> == <nameString> (<taxonName>), <usageType> in <author> (<year>) <title>:<pageNumber>
-	 *   - redundant data
-	 *   + basic search works without additional XyzBanks
-	 *   + able to resolve most treatment citations right away
 	 */
 }
