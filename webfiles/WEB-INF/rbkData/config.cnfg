@@ -6,6 +6,9 @@ adminPasscode = "<yourNodePasscode>";
 //accessUrl = "http://plazi2.cs.umb.edu:8080/TnuBank/rbk";
 //adminPasscode = "<noneOfYourBusiness>";
 
+// storage location for parsed strings (relative or absolute, defaults to sub folder of webapp data folder)
+//parsedStringFolder = "./BibRefs";
+
 // HTML template file required for admin page
 basePage = "onnNodeAdminPage.html";
 
